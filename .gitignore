@@ -1,0 +1,22 @@
+# Go binaries
+url-shortener-backend
+url-shortener-frontend
+*.exe
+*.out
+*.test
+
+# Build directories
+bin/
+build/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log

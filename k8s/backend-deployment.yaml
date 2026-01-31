@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: localhost/url-shortener-backend:1.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REDIS_ADDR
+              value: "redis:6379"
+            - name: BASE_URL
+              value: "http://short.local:8080" 
