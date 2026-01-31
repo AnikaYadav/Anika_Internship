@@ -20,3 +20,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Docker image archives
+*.tar
