@@ -10,6 +10,7 @@ minikube status
 podman build -t localhost/url-shortener-backend:1.1 .
 
 cd k8s/frontend
+
 podman build -t localhost/url-shortener-frontend:1.9 .
 
 podman save -o url-shortener-frontend.tar localhost/url-shortener-frontend:1.9
