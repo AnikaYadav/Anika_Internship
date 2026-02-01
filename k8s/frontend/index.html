@@ -2,14 +2,83 @@
 <html>
 <head>
     <title>URL Shortener</title>
+
+    <style>
+        /* Full page styling */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #ffe6f0; /* light pink */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Center everything */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Input + button row */
+        .form-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            padding: 12px;
+            width: 350px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background-color: #ff66a3;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #ff4d94;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        #result a {
+            color: #cc0066;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>URL Shortener</h1>
+    <div class="container">
+        <h1>URL Shortener</h1>
 
-    <input id="url" placeholder="Enter URL" size="50"/>
-    <button onclick="shorten()">Shorten</button>
+        <div class="form-box">
+            <input id="url" placeholder="Enter URL" />
+            <button onclick="shorten()">Shorten</button>
+        </div>
 
-    <p id="result"></p>
+        <p id="result"></p>
+    </div>
 
     <script>
         async function shorten() {
