@@ -5,23 +5,34 @@ import "fmt"
 func main() {
 	var num1, num2 float64
 	var operator string
+	var choice string
 
-	fmt.Println("Enter first number: ")
-	fmt.Scanln(&num1)
+	for {
 
-	fmt.Println("Enter operator (+, -, *, /): ")
-	fmt.Scanln(&operator)
+		fmt.Println("Enter first number: ")
+		fmt.Scanln(&num1)
 
-	fmt.Println("Enter second number: ")
-	fmt.Scanln(&num2)
+		fmt.Println("Enter operator (+, -, *, /): ")
+		fmt.Scanln(&operator)
 
-	result, err := calculate(num1, num2, operator)
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
+		fmt.Println("Enter second number: ")
+		fmt.Scanln(&num2)
+
+		result, err := calculate(num1, num2, operator)
+		if err != nil {
+			fmt.Println("Error:", err)
+			continue
+		}
+
+		fmt.Printf("Result: %.2f\n", result)
+
+		fmt.Println("Do you want to calculate more? (y/n)")
+		fmt.Scanln(&choice)
+		if choice == "n" {
+			break
+		}
 	}
 
-	fmt.Printf("Result: %.2f\n", result)
 }
 
 func calculate(a, b float64, op string) (float64, error) {
