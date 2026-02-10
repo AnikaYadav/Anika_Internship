@@ -1,22 +1,33 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode"
+)
 
 func main() {
 	var num1, num2 float64
-	var operator string
-	var choice string
+	var operator rune
+	var choice rune
 
 	for {
+		fmt.Print("Enter first number: ")
+		if _, err := fmt.Scanln(&num1); err != nil {
+			fmt.Println("Invalid number:", err)
+			continue
+		}
 
-		fmt.Println("Enter first number: ")
-		fmt.Scanln(&num1)
+		fmt.Print("Enter operator (+, -, *, /): ")
+		if _, err := fmt.Scanf("%c\n", &operator); err != nil {
+			fmt.Println("Invalid operator:", err)
+			continue
+		}
 
-		fmt.Println("Enter operator (+, -, *, /): ")
-		fmt.Scanln(&operator)
-
-		fmt.Println("Enter second number: ")
-		fmt.Scanln(&num2)
+		fmt.Print("Enter second number: ")
+		if _, err := fmt.Scanln(&num2); err != nil {
+			fmt.Println("Invalid number:", err)
+			continue
+		}
 
 		result, err := calculate(num1, num2, operator)
 		if err != nil {
@@ -26,29 +37,34 @@ func main() {
 
 		fmt.Printf("Result: %.2f\n", result)
 
-		fmt.Println("Do you want to calculate more? (y/n)")
-		fmt.Scanln(&choice)
-		if choice == "n" {
+		fmt.Print("Do you want to calculate more? (y/n): ")
+		if _, err := fmt.Scanf("%c\n", &choice); err != nil {
+			fmt.Println("Invalid choice:", err)
+			continue
+		}
+
+		choice = unicode.ToLower(choice)
+		if choice == 'n' {
 			break
 		}
-	}
 
+	}
 }
 
-func calculate(a, b float64, op string) (float64, error) {
+func calculate(a, b float64, op rune) (float64, error) {
 	switch op {
-	case "+":
+	case '+':
 		return a + b, nil
-	case "-":
+	case '-':
 		return a - b, nil
-	case "*":
+	case '*':
 		return a * b, nil
-	case "/":
+	case '/':
 		if b == 0 {
 			return 0, fmt.Errorf("cannot divide by zero")
 		}
 		return a / b, nil
 	default:
-		return 0, fmt.Errorf("invalid operator:%s", op)
+		return 0, fmt.Errorf("invalid operator: %c", op)
 	}
 }

@@ -2,56 +2,41 @@ package main
 
 import "testing"
 
-func TestCalculateAdd(t *testing.T) {
-	result, err := calculate(2, 3, "+")
-	if err != nil {
-		t.Fatalf("unexpected error: %v", err)
+func TestCalculate(t *testing.T) {
+	tests := []struct {
+		name        string
+		op1, op2    float64
+		op          rune
+		expected    float64
+		expectedErr bool
+	}{
+		{"Addition", 3.0, 5.6, '+', 8.60, false},
+		{"Subtraction", 4, 2, '-', 2.00, false},
+		{"Multiplication", -7, -2, '*', 14.00, false},
+		{"Division", 7, 3.5, '/', 2.00, false},
+		{"DivisionByZero", 6, 0, '/', 0, true},
+		{"InvalidOperator", 8, 8, '_', 0, true},
 	}
-	if result != 5 {
-		t.Errorf("expected 5, got %v", result)
-	}
-}
 
-func TestCalculateSubtract(t *testing.T) {
-	result, err := calculate(5, 3, "-")
-	if err != nil {
-		t.Fatalf("unexpected error: %v", err)
-	}
-	if result != 2 {
-		t.Errorf("expected 2, got %v", result)
-	}
-}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			output, err := calculate(tt.op1, tt.op2, tt.op)
 
-func TestCalculateMultiply(t *testing.T) {
-	result, err := calculate(4, 5, "*")
-	if err != nil {
-		t.Fatalf("unexpected error: %v", err)
-	}
-	if result != 20 {
-		t.Errorf("expected 20, got %v", result)
-	}
-}
+			if tt.expectedErr {
+				if err == nil {
+					t.Errorf("%s: expected error but got none", tt.name)
+				}
+				return
+			}
 
-func TestCalculateDivide(t *testing.T) {
-	result, err := calculate(10, 2, "/")
-	if err != nil {
-		t.Fatalf("unexpected error: %v", err)
-	}
-	if result != 5 {
-		t.Errorf("expected 5, got %v", result)
-	}
-}
+			if err != nil {
+				t.Errorf("%s: unexpected error: %v", tt.name, err)
+				return
+			}
 
-func TestCalculateDivideByZero(t *testing.T) {
-	_, err := calculate(10, 0, "/")
-	if err == nil {
-		t.Errorf("expected error when dividing by zero")
-	}
-}
-
-func TestCalculateInvalidOperator(t *testing.T) {
-	_, err := calculate(10, 5, "%")
-	if err == nil {
-		t.Errorf("expected error for invalid operator")
+			if output != tt.expected {
+				t.Errorf("%s: output = %v, expected = %v", tt.name, output, tt.expected)
+			}
+		})
 	}
 }
