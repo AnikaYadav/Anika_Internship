@@ -42,7 +42,7 @@ func TestListItems(t *testing.T) {
 	items["a"] = true
 	items["b"] = true
 
-	list := listItems(items)
+	list := toList(items)
 
 	if len(list) != 2 {
 		t.Errorf("expected 2 items, got %d", len(list))

@@ -3,7 +3,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"maps"
 	"os"
+	"slices"
 	"strings"
 )
 
@@ -15,20 +17,32 @@ func main() {
 		fmt.Println("Command (add, list, remove, check, quit):")
 		fmt.Print("> ")
 
-		command, _ := reader.ReadString('\n')
+		command, err := readInput(reader)
+		if err != nil {
+			fmt.Println("Error reading command:", err)
+			continue
+		}
 		command = strings.TrimSpace(strings.ToLower(command))
 
 		switch command {
 
 		case "add":
 			fmt.Print("Input: ")
-			input := readInput(reader)
+			input, err := readInput(reader)
+			if err != nil {
+				fmt.Println("Error reading input:", err)
+				continue
+			}
 			addItem(items, input)
 			fmt.Println("Added!")
 
 		case "check":
 			fmt.Print("Input: ")
-			input := readInput(reader)
+			input, err := readInput(reader)
+			if err != nil {
+				fmt.Println("Error reading input:", err)
+				continue
+			}
 
 			if checkItem(items, input) {
 				fmt.Println("Exists!")
@@ -38,7 +52,11 @@ func main() {
 
 		case "remove":
 			fmt.Print("Input: ")
-			input := readInput(reader)
+			input, err := readInput(reader)
+			if err != nil {
+				fmt.Println("Error reading input:", err)
+				continue
+			}
 
 			if removeItem(items, input) {
 				fmt.Println("Removed!")
@@ -47,7 +65,7 @@ func main() {
 			}
 
 		case "list":
-			list := listItems(items)
+			list := toList(items)
 			if len(list) == 0 {
 				fmt.Println("No items found.")
 				continue
@@ -68,9 +86,12 @@ func main() {
 	}
 }
 
-func readInput(reader *bufio.Reader) string {
-	input, _ := reader.ReadString('\n')
-	return strings.TrimSpace(input)
+func readInput(reader *bufio.Reader) (string, error) {
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		return "", err
+	}
+	return strings.TrimSpace(input), nil
 }
 
 func addItem(items map[string]bool, input string) {
@@ -89,10 +110,6 @@ func removeItem(items map[string]bool, input string) bool {
 	return false
 }
 
-func listItems(items map[string]bool) []string {
-	result := []string{}
-	for item := range items {
-		result = append(result, item)
-	}
-	return result
+func toList(items map[string]bool) []string {
+	return slices.Collect(maps.Keys(items))
 }
