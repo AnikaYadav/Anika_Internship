@@ -103,10 +103,12 @@ func checkItem(items map[string]bool, input string) bool {
 }
 
 func removeItem(items map[string]bool, input string) bool {
-	if items[input] {
+
+	if _, exists := items[input]; exists {
 		delete(items, input)
 		return true
 	}
+
 	return false
 }
 
