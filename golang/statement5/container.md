@@ -93,19 +93,19 @@ A Containerfile (same as Dockerfile) is a text file that contains instructions t
 - `podman build -t <image_name>:<version> . --no-cache` - Build image without cache
 
 ### Containers
-`podman pull <image_name>` _ Pull image from registry
-`podman run <image_name>` - Run a container
-`podman run -d <image_name>` - Run container in background
-`podman run -p <host_port>:<container_port> <image_name> ` - Run container with port mapping
-`podman run --name <container_name> <image_name>` - Run container with name
-`podman ps` - List running containers
-`podman ps -a`  - List all containers (including stopped)
-`podman stop <container_id_or_name>` - Stop a container
-`podman start <container_id_or_name> ` - Start a stopped container
-`podman restart <container_id_or_name>` - Restart a container
-`podman rm <container_id_or_name>` - Remove a container
-`podman logs <container_id_or_name>` - View container logs
-`podman logs -f <container_id_or_name>` - Shows real time logs 
+- `podman pull <image_name>` _ Pull image from registry
+- `podman run <image_name>` - Run a container
+- `podman run -d <image_name>` - Run container in background
+- `podman run -p <host_port>:<container_port> <image_name> ` - Run container with port mapping
+- `podman run --name <container_name> <image_name>` - Run container with name
+- `podman ps` - List running containers
+- `podman ps -a`  - List all containers (including stopped)
+- `podman stop <container_id_or_name>` - Stop a container
+- `podman start <container_id_or_name> ` - Start a stopped container
+- `podman restart <container_id_or_name>` - Restart a container
+- `podman rm <container_id_or_name>` - Remove a container
+- `podman logs <container_id_or_name>` - View container logs
+- `podman logs -f <container_id_or_name>` - Shows real time logs 
 
 
 
