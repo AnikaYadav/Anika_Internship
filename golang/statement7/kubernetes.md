@@ -131,14 +131,14 @@ thus providing high availability.
 - Ingress is a Kubernetes object that controls how external traffic reaches Services, using rules based on domain name or URL path.
 
 ## Commands 
-
+### Nodes
 - `kubectl cluster-info`          # Show cluster info
 - `kubectl get nodes`             # List all nodes
 - `kubectl describe node <name>`  # Detailed node info
 - `kubectl top nodes`            # real-time, CPU and memory usage for all nodes
 
 
-
+### Pods
 - `kubectl get pods`                     # List all pods
 - `kubectl get pods -o wide`             # Show pods with node/IP details
 - `kubectl describe pod <pod-name>`      # Detailed info about a pod
@@ -147,14 +147,14 @@ thus providing high availability.
 - `kubectl delete pod <pod-name>`        # Delete a pod
 
 
-
+### ReplicaSet
 - `kubectl get rs`                          # List ReplicaSets
 - `kubectl describe rs <rs-name>`           # Detailed ReplicaSet info
 - `kubectl scale rs <rs-name> --replicas=5` # Change number of replicas
 - `kubectl delete rs <rs-name>`             # Delete a ReplicaSet
 
 
-
+### Deployment
 - `kubectl get deployments`                         # List deployments
 - `kubectl describe deployment <name>`               # Detailed deployment info
 - `kubectl apply -f app.yaml`                       # Create/update deployment from YAML
@@ -166,17 +166,14 @@ thus providing high availability.
 - `kubectl delete deployment <name>`                # Delete deployment
 
 
-
+### Service
 - `kubectl get svc`                              # List services
 - `kubectl describe svc <service-name>`          # Detailed service info
 - `kubectl expose deployment <name> --port=80`   # Create service for a deployment
 - `kubectl delete svc <service-name>`            # Delete a service
 
 
-
+### General
 - `kubectl apply -f file.yaml`        # Create or update resources defined in a YAML file
 - `kubectl delete -f file.yaml`       # Delete resources defined in a YAML file
-
-
-
-- `kubectl get all`                 # List most common resources
+- `kubectl get all`                 # List most common resources 
