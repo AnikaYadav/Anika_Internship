@@ -81,6 +81,14 @@
 **Example:** 
 - `git restore file.go` # to undo changes since last commit, only possible when unstaged
 - `git restore –-staged test.txt` # to unstage added files
+- `git restore --source HEAD~N <filename>`  # undo changes for N commits
+
+
+## git revert
+**Description:** Creates a new commit that matches the historical state of a previous commit. The revert command does not change the project history which makes it a safe operation for commits that have already been published to a shared repository. 
+
+**Example:** 
+- `git revert commitID` # creates a new commit that matches the state of the commit just before the specified commitID
 
 
 ## git log
@@ -225,6 +233,4 @@
 **Example:** 
 - `git remote add <name> <url>` # creates convenient shortname for a remote that can be used in other commands
 - `git remote -v` # to list all the remotes
-
-
 
