@@ -5,7 +5,7 @@
 - A container image is a lightweight, standalone, executable package of software that includes everything needed to run an application.
   
 ### Containers typically include the following :
--  `Application code` - Actual code files (Go binary/Node.js app/Python sripts)
+-  `Application code` - Actual code files (Go binary/Node.js app/Python scripts)
 -  `Runtime Environment` - Software needed to run the code (Go runtime/Node.js runtime/ Python Interpreter)
 -  `Libraries and Dependencies` - All packages required by the application (npm packages/Go modules)
 -  `Configuration Files` - Settings used to run the application (.env files/ config.json)
@@ -97,7 +97,14 @@ A Containerfile (same as Dockerfile) is a text file that contains instructions t
 - `podman run <image_name>` - Run a container
 - `podman run -d <image_name>` - Run container in background
 - `podman run -p <host_port>:<container_port> <image_name> ` - Run container with port mapping
+- `podman run -v <host-path>:<container-path> image-name` - Mount a volume between host machine and container
+- `podman volume create <volume-name>` # create a volume 
+- `podman inspect <container_id_or_name>` - Give all details related to container (ID,image,env variables,mounted volumes, ports,state,network settings) in JSON format
+- `podman attach <container-id>` # connects your terminal to the container’s input/output 
+- `podman exec [options] <container> <command>` # run a command inside a running container
+- `podman run --entrypoint <new-command> image-name`. # to override the entrypoint specified in dockerfile
 - `podman run --name <container_name> <image_name>` - Run container with name
+- `podman run --link <source-container>:<alias> <image>`  - links containers (depreciated) (podman compose is used)
 - `podman ps` - List running containers
 - `podman ps -a`  - List all containers (including stopped)
 - `podman stop <container_id_or_name>` - Stop a container
@@ -106,6 +113,36 @@ A Containerfile (same as Dockerfile) is a text file that contains instructions t
 - `podman rm <container_id_or_name>` - Remove a container
 - `podman logs <container_id_or_name>` - View container logs
 - `podman logs -f <container_id_or_name>` - Shows real time logs 
+  
 
 
+## Namespaces 
+- Namespaces are a Linux kernel feature that isolate resources so processes only see their own environment,giving each process its own isolated view of system resources.
+- When a container is launched, Docker creates a distinct set of namespaces for it, making it feel like it is running on a standalone machine.
+Six namespaces used:
+1.PID (Process ID) Namespace: Each container sees only its own processes
+2.NET (Network) Namespace: Each container has its own IP, ports
+3.MNT (Mount) Namespace: Each container sees its own file system
+4.UTS (UNIX Time-Sharing) Namespace: Each container has its own hostname
+5.IPC (InterProcess Communication) Namespace: Containers do not share inter-process communication
+6.USER (User ID) Namespace:  Root inside container ≠ root on host
 
+
+## Image layers vs Container layer
+### Image layers
+- An image is made up of multiple layers.
+- Each Dockerfile instruction creates a new layer.
+- All image layers are read-only.
+- Layers are stacked on top of each other to form the final image.
+- Layers are reused between images → saves space.
+- If only one layer changes, only that layer rebuilds → faster builds.
+- Images are immutable (cannot be changed directly).
+- You must rebuild image to change anything.
+- Faster builds (layer caching) and Smaller storage (shared layers)
+
+### Container layer 
+- When you run a container, Docker adds one extra writable layer.
+- Container layer sits on top of image layers.
+- This layer stores: file changes,new files, deleted files. Image layer stays unchanged.
+- when you modify files: Copy-on-write is used - Files are copied to container layer ,then modified
+- In container is deleted- container layer is gone (use volumes fpr data persistence)
