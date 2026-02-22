@@ -137,6 +137,8 @@ thus providing high availability.
 - `kubectl describe node <name>`  # Detailed node info
 - `kubectl top nodes`            # real-time, CPU and memory usage for all nodes
 
+
+
 - `kubectl get pods`                     # List all pods
 - `kubectl get pods -o wide`             # Show pods with node/IP details
 - `kubectl describe pod <pod-name>`      # Detailed info about a pod
@@ -145,10 +147,13 @@ thus providing high availability.
 - `kubectl delete pod <pod-name>`        # Delete a pod
 
 
+
 - `kubectl get rs`                          # List ReplicaSets
 - `kubectl describe rs <rs-name>`           # Detailed ReplicaSet info
 - `kubectl scale rs <rs-name> --replicas=5` # Change number of replicas
 - `kubectl delete rs <rs-name>`             # Delete a ReplicaSet
+
+
 
 - `kubectl get deployments`                         # List deployments
 - `kubectl describe deployment <name>`               # Detailed deployment info
@@ -160,12 +165,18 @@ thus providing high availability.
 - `kubectl rollout history deployment <name>`           # Show rollout history of a deployment
 - `kubectl delete deployment <name>`                # Delete deployment
 
+
+
 - `kubectl get svc`                              # List services
 - `kubectl describe svc <service-name>`          # Detailed service info
 - `kubectl expose deployment <name> --port=80`   # Create service for a deployment
 - `kubectl delete svc <service-name>`            # Delete a service
 
+
+
 - `kubectl apply -f file.yaml`        # Create or update resources defined in a YAML file
 - `kubectl delete -f file.yaml`       # Delete resources defined in a YAML file
+
+
 
 - `kubectl get all`                 # List most common resources
