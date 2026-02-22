@@ -145,4 +145,4 @@ Six namespaces used:
 - Container layer sits on top of image layers.
 - This layer stores: file changes,new files, deleted files. Image layer stays unchanged.
 - when you modify files: Copy-on-write is used - Files are copied to container layer ,then modified
-- In container is deleted- container layer is gone (use volumes fpr data persistence)
+- In container is deleted- container layer is gone (use volumes for data persistence)
