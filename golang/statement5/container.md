@@ -120,12 +120,12 @@ A Containerfile (same as Dockerfile) is a text file that contains instructions t
 - Namespaces are a Linux kernel feature that isolate resources so processes only see their own environment,giving each process its own isolated view of system resources.
 - When a container is launched, Docker creates a distinct set of namespaces for it, making it feel like it is running on a standalone machine.
 Six namespaces used:
-1.PID (Process ID) Namespace: Each container sees only its own processes
-2.NET (Network) Namespace: Each container has its own IP, ports
-3.MNT (Mount) Namespace: Each container sees its own file system
-4.UTS (UNIX Time-Sharing) Namespace: Each container has its own hostname
-5.IPC (InterProcess Communication) Namespace: Containers do not share inter-process communication
-6.USER (User ID) Namespace:  Root inside container ≠ root on host
+1. PID (Process ID) Namespace: Each container sees only its own processes
+2. NET (Network) Namespace: Each container has its own IP, ports
+3. MNT (Mount) Namespace: Each container sees its own file system
+4. UTS (UNIX Time-Sharing) Namespace: Each container has its own hostname
+5. IPC (InterProcess Communication) Namespace: Containers do not share inter-process communication
+6. USER (User ID) Namespace:  Root inside container ≠ root on host
 
 
 ## Image layers vs Container layer
