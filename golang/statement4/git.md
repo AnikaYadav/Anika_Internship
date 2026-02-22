@@ -205,7 +205,7 @@
 
 
 ## git stash
-**Description:** Temporarily save changes  
+**Description:** Temporarily save changes (stashing is useful when you find yourself needing to quickly switch branches to work on something else, but are in the middle of changing a file, we can stash ongoing work without having to commit it)
 
 **Variations:** `pop`, `list`
 
@@ -214,11 +214,12 @@
 - `git stash list` # to get all stash entries
 - `git stash show` # to visualize the changes (diff)
 - `git stash pop` # to pop the first element of git stash list
-- `git stash pop` # stash@{i} to get the ith element of the stack
+- `git stash pop stash@{2}` # stash@{i} to get the ith element of the stack
+- `git stash apply` # apply stash but the element is still retained in the stash list 
 
 
 ## git rebase 
-**Description:** Rewrite commit history 
+**Description:** Rewrite commit history (Move your branch so it starts from another commit)
 
 **Example:**
 - `git rebase -i HEAD~n` # to rebase the last n commits in the interactive mode
@@ -233,4 +234,5 @@
 **Example:** 
 - `git remote add <name> <url>` # creates convenient shortname for a remote that can be used in other commands
 - `git remote -v` # to list all the remotes
+- `git remote rm <name>` # to remove 
 
