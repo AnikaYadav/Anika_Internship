@@ -104,7 +104,7 @@ A Containerfile (same as Dockerfile) is a text file that contains instructions t
 - `podman exec [options] <container> <command>` # run a command inside a running container
 - `podman run --entrypoint <new-command> image-name`. # to override the entrypoint specified in dockerfile
 - `podman run --name <container_name> <image_name>` - Run container with name
-- `podman run --link <source-container>:<alias> <image>`  - links containers (depreciated) (podman compose is used)
+- `podman run --link <source-container>:<alias> <image>`  - links containers (deprecated) (podman compose is used)
 - `podman ps` - List running containers
 - `podman ps -a`  - List all containers (including stopped)
 - `podman stop <container_id_or_name>` - Stop a container
