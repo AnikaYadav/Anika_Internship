@@ -132,40 +132,40 @@ thus providing high availability.
 
 ## Commands 
 
-`kubectl cluster-info`          # Show cluster info
-`kubectl get nodes`             # List all nodes
-`kubectl describe node <name>`  # Detailed node info
-`kubectl top nodes`            # real-time, CPU and memory usage for all nodes
+- `kubectl cluster-info`          # Show cluster info
+- `kubectl get nodes`             # List all nodes
+- `kubectl describe node <name>`  # Detailed node info
+- `kubectl top nodes`            # real-time, CPU and memory usage for all nodes
 
-`kubectl get pods`                     # List all pods
-`kubectl get pods -o wide`             # Show pods with node/IP details
-`kubectl describe pod <pod-name>`      # Detailed info about a pod
-`kubectl logs <pod-name>`              # View logs of a pod
-`kubectl exec -it <pod-name> -- COMMAND`  # Run a command inside a pod 
-`kubectl delete pod <pod-name>`        # Delete a pod
+- `kubectl get pods`                     # List all pods
+- `kubectl get pods -o wide`             # Show pods with node/IP details
+- `kubectl describe pod <pod-name>`      # Detailed info about a pod
+- `kubectl logs <pod-name>`              # View logs of a pod
+- `kubectl exec -it <pod-name> -- COMMAND`  # Run a command inside a pod 
+- `kubectl delete pod <pod-name>`        # Delete a pod
 
 
-`kubectl get rs`                          # List ReplicaSets
-`kubectl describe rs <rs-name>`           # Detailed ReplicaSet info
-`kubectl scale rs <rs-name> --replicas=5` # Change number of replicas
-`kubectl delete rs <rs-name>`             # Delete a ReplicaSet
+- `kubectl get rs`                          # List ReplicaSets
+- `kubectl describe rs <rs-name>`           # Detailed ReplicaSet info
+- `kubectl scale rs <rs-name> --replicas=5` # Change number of replicas
+- `kubectl delete rs <rs-name>`             # Delete a ReplicaSet
 
-`kubectl get deployments`                         # List deployments
-`kubectl describe deployment <name>`               # Detailed deployment info
-`kubectl apply -f app.yaml`                       # Create/update deployment from YAML
-`kubectl scale deployment <name> --replicas=5`     # Scale deployment
-`kubectl rollout restart deployment <name>`       # Restart all pods in a deployment
-`kubectl rollout status deployment <name>`        # Check rollout status
-`kubectl rollout undo deployment <name>`           # Rollback deployment
-`kubectl rollout history deployment <name>`           # Show rollout history of a deployment
-`kubectl delete deployment <name>`                # Delete deployment
+- `kubectl get deployments`                         # List deployments
+- `kubectl describe deployment <name>`               # Detailed deployment info
+- `kubectl apply -f app.yaml`                       # Create/update deployment from YAML
+- `kubectl scale deployment <name> --replicas=5`     # Scale deployment
+- `kubectl rollout restart deployment <name>`       # Restart all pods in a deployment
+- `kubectl rollout status deployment <name>`        # Check rollout status
+- `kubectl rollout undo deployment <name>`           # Rollback deployment
+- `kubectl rollout history deployment <name>`           # Show rollout history of a deployment
+- `kubectl delete deployment <name>`                # Delete deployment
 
-`kubectl get svc`                              # List services
-`kubectl describe svc <service-name>`          # Detailed service info
-`kubectl expose deployment <name> --port=80`   # Create service for a deployment
-`kubectl delete svc <service-name>`            # Delete a service
+- `kubectl get svc`                              # List services
+- `kubectl describe svc <service-name>`          # Detailed service info
+- `kubectl expose deployment <name> --port=80`   # Create service for a deployment
+- `kubectl delete svc <service-name>`            # Delete a service
 
-`kubectl apply -f file.yaml`        # Create or update resources defined in a YAML file
-`kubectl delete -f file.yaml`       # Delete resources defined in a YAML file
+- `kubectl apply -f file.yaml`        # Create or update resources defined in a YAML file
+- `kubectl delete -f file.yaml`       # Delete resources defined in a YAML file
 
-`kubectl get all`                 # List most common resources
+- `kubectl get all`                 # List most common resources
