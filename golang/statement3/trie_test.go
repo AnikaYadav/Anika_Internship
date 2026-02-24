@@ -1,6 +1,8 @@
 package main
 
 import (
+	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -65,7 +67,6 @@ func TestDelete(t *testing.T) {
 		})
 	}
 }
-
 func TestListAll(t *testing.T) {
 	trie := NewTrie()
 	wordsToInsert := []string{"hello", "world", "test", "trie"}
@@ -76,13 +77,10 @@ func TestListAll(t *testing.T) {
 
 	result := trie.ListAll()
 
-	if len(result) != len(wordsToInsert) {
-		t.Errorf("ListAll length: got %d, expected %d", len(result), len(wordsToInsert))
-	}
+	sort.Strings(result)
+	sort.Strings(wordsToInsert)
 
-	for i, word := range result {
-		if word != wordsToInsert[i] {
-			t.Errorf("ListAll at index %d: got %v, expected %v", i, word, wordsToInsert[i])
-		}
+	if !reflect.DeepEqual(result, wordsToInsert) {
+		t.Errorf("ListAll mismatch: got %v, expected %v", result, wordsToInsert)
 	}
 }

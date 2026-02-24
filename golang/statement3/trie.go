@@ -48,36 +48,37 @@ func (t *Trie) Search(word string) bool {
 	return curr.isLeaf
 }
 
-func deleteHelper(node *TrieNode, word string, depth int) bool {
+func deleteHelper(node *TrieNode, word []rune, depth int) bool {
 	if node == nil {
 		return false
 	}
+
 	if depth == len(word) {
 		if !node.isLeaf {
 			return false
 		}
 		node.isLeaf = false
-		return len(node.children) == 0
+		return true
 	}
-	ch := rune(word[depth])
+
+	ch := word[depth]
 	child := node.children[ch]
 	if child == nil {
 		return false
 	}
-	shouldDeleteChild := deleteHelper(child, word, depth+1)
-	if shouldDeleteChild {
+
+	deleted := deleteHelper(child, word, depth+1)
+
+	if deleted && len(child.children) == 0 && !child.isLeaf {
 		delete(node.children, ch)
-		return len(node.children) == 0 && !node.isLeaf
 	}
-	return false
+
+	return deleted
 }
 
 func (t *Trie) Delete(word string) bool {
-	if !t.Search(word) {
-		return false
-	}
-	deleteHelper(t.root, word, 0)
-	return true
+	runes := []rune(word)
+	return deleteHelper(t.root, runes, 0)
 }
 
 func (t *Trie) dfs(node *TrieNode, prefix []rune, result *[]string) {
@@ -123,7 +124,7 @@ func main() {
 			fmt.Println("Error reading command:", err)
 			continue
 		}
-		command = strings.TrimSpace(strings.ToLower(command))
+		command = strings.ToLower(command)
 
 		switch command {
 
