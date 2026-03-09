@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trie-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trie-server
+  template:
+    metadata:
+      labels:
+        app: trie-server
+    spec:
+      containers:
+        - name: server
+          image: localhost/trie-server:v12
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 50051
+          volumeMounts:
+            - name: trie-storage        
+              mountPath: /data          
+      volumes:
+        - name: trie-storage
+          persistentVolumeClaim:
+            claimName: rbd-pvc          
