@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package trie;
+
+option go_package = "trie-grpc/proto;proto";
+
+service TrieService {
+  rpc Add(Word) returns (Status);
+  rpc Check(Word) returns (Status);
+  rpc Remove(Word) returns (Status);
+  rpc List(Empty) returns (WordList);
+}
+
+message Word {
+  string text = 1;
+}
+
+message Status {
+  bool ok = 1;
+}
+
+message WordList {
+  repeated string words = 1;
+}
+
+message Empty {}

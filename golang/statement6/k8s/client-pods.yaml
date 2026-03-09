@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: trie-client
+spec:
+  containers:
+    - name: client
+      image: localhost/trie-client:v12
+      imagePullPolicy: IfNotPresent
+      stdin: true
+      tty: true
